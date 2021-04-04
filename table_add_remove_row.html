@@ -1,0 +1,55 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function addRow() {
+            var data = $("#mytable tr:last").clone(true).appendTo("#mytable");
+            data.find("input").val('');
+        }
+
+        function removeRow() {
+            $('#mytable tr').has('input[name="select"]:checked').remove()
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="addRow()">Add</button><br />
+    <button onclick="removeRow()">Remove</button><br />
+
+    <table id="mytable">
+        <thead>
+            <tr>
+                <th>select</th>
+                <th>name</th>
+                <th>address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="radio" name="select"></input>
+                </td>
+                <td>
+                    <input type=" text" value="xxx"></input>
+                </td>
+                <td>
+                    <input type="text" value="xxx xxx"></input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="select"></input>
+                </td>
+                <td>
+                    <input type=" text" value="yyy"></input>
+                </td>
+                <td>
+                    <input type="text" value="yyy yyy"></input>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
