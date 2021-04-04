@@ -1,0 +1,49 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Camera Test</title>
+	<style>
+		canvas,
+		video {
+			border: 1px solid gray;
+		}
+	</style>
+</head>
+
+<body>
+	<video id="camera" width="300" height="200"></video>
+	<script>
+		function loadFinished() {
+			const video  = document.querySelector("#camera");
+			/** カメラ設定 */
+			const constraints = {
+				audio: false,
+				video: {
+					width: 300,
+					height: 200,
+					// facingMode: "user"   // フロントカメラを利用する
+					facingMode: "environment"   // フロントカメラを利用する  // phone ok 
+					// facingMode: { exact: "environment" }  // リアカメラを利用する場合 // phone ok, pc err
+				}
+			};
+
+			/**
+			 * カメラを<video>と同期
+			 */
+			navigator.mediaDevices.getUserMedia(constraints)
+				.then((stream) => {
+					video.srcObject = stream;
+					video.onloadedmetadata = (e) => {
+						video.play();
+					};
+				})
+				.catch((err) => {
+					console.log(err.name + ": " + err.message);
+				});
+		}
+		window.onload = loadFinished;
+	</script>
+</body>
+
+</html>
